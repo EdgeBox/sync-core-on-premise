@@ -1,0 +1,150 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:4.4.6
+    restart: always
+    # Uncomment if you want to debug this service.
+    #ports:
+    #  - "27017:27017"
+    volumes:
+      - mongo:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
+
+  rabbitmq:
+    # We are including the management features here to have a UI if we needed to debug anything. You can separate them
+    # if you are self-hosting this as a cluster.
+    image: rabbitmq:3.8-management
+    restart: always
+    # Uncomment if you want to debug this service.
+    #ports:
+    #  - "5672:5672"
+    #  - "15672:15672"
+    healthcheck:
+      test: [ "CMD", "rabbitmq-diagnostics", "ping" ]
+      interval: 30s
+      timeout: 10s
+      retries: 30
+
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.12.0"
+    # Uncomment if you want to debug this service.
+    #ports:
+    #  - "9200:9200"
+    #  - "9300:9300"
+    environment:
+      # Only for local setups.
+      - "discovery.type=single-node"
+      # For prod environments this should be at least 1GB. Please refer to the official Elasticsearch docs for more
+      # information.
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    # This is recommended but not required and may fail if you are running it on certain VMs like Gitpod. So we're
+    # skipping it by default.
+    #ulimits:
+    #  memlock:
+    #    soft: -1
+    #    hard: -1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+
+# You can install Kibana if you need a UI for elasticsearch.
+#  kibana:
+#    # Must use the exact same version as the connected elasticsearch.
+#    image: "docker.elastic.co/kibana/kibana:7.12.0"
+#    ports:
+#      - "5601:5601"
+#    environment:
+#      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
+#      - "SERVER_NAME=${KIBANA_DOMAIN}"
+#    depends_on:
+#      elasticsearch:
+#        condition: service_healthy
+
+  sync-core:
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.0
+    restart: always
+    # You can choose any other port if you like. The container will always listen to :8080.
+    ports:
+      - "8080:8080"
+    volumes:
+      # You can skip this if you provide S3 credentials below instead.
+      - sync_core_files:/usr/src/files
+    environment:
+      # Must be static "sync-core"
+      - "SERVICE_NAME=sync-core"
+
+      # Configured through variables / secrets.
+      - "DATABASE_URL=${SYNC_CORE_DATABASE_URL}"
+      - "SYNC_CORE_DOMAIN=${SYNC_CORE_DOMAIN}"
+      - "SYNC_CORE_QUEUE_URL=${SYNC_CORE_QUEUE_URL}"
+
+      - "SYNC_CORE_UUID=${SYNC_CORE_UUID}"
+      - "SYNC_CORE_SECRET=${SYNC_CORE_SECRET}"
+
+      # Static flags: if needed for debugging the setup at any point.
+      #- "FEATURE_FLAGS=log:SyndicationHandlerService,log:SyndicationInternalOperationService,log:SyndicationSiteOperationService,log:SiteRequestService,log:PreviewsService"
+
+      - "BROKER_QUEUE_URL=${BROKER_QUEUE_URL}"
+      - "ELASTICSEARCH_URL=${ELASTICSEARCH_URL}"
+
+      # Optional: Set to "no" if you want to use S3 instead.
+      - "LOCAL_FILESYSTEM=${LOCAL_FILESYSTEM}"
+
+      # Optional: If you want to collect errors with Sentry, you can add your DSN here.
+      - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:8080/healthz/ready || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+
+  sync-core-broker:
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.0
+    restart: always
+    environment:
+      # Must be static "broker"
+      - "SERVICE_NAME=broker"
+
+      # Configured through variables / secrets.
+      - "SYNC_CORE_QUEUE_URL=${SYNC_CORE_QUEUE_URL}"
+      - "BROKER_QUEUE_URL=${BROKER_QUEUE_URL}"
+      - "DATABASE_URL=${BROKER_DATABASE_URL}"
+
+      # Optional: If you want to collect errors with Sentry, you can add your DSN here.
+      # - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "yarn run console health ready || exit 1" ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+
+volumes:
+  elasticsearch_data:
+    driver: local
+  mongo:
+    driver: local
+  sync_core_files:
+    driver: local
