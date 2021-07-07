@@ -15,7 +15,9 @@ The Sync Core handles the distribution of the content. All sites must connect to
 All our packages include our SaaS Sync Core- so if cloud hosting is an option for you, we recommend you use that.
 If you require on-premise hosting, you can use this repository as a starting point for setting up your own Sync Core.
 Please note that an Enterprise license is required to get access to the Sync Core Docker image.
-Please checkout our documentation for more information.
+
+To get the required UUID and secret for a new Sync Core, please register your Sync Core [here](https://app.cms-content-sync.io/sync-cores).
+Don't re-use the same UUID and secret on multiple environments. Please checkout our documentation for more information.
 
 The Sync Core consists of two different containers that share the same image:
 - sync-core: The main application that exposes REST interfaces and performs remote updates.
