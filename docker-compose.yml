@@ -64,7 +64,7 @@ services:
 #      - "5601:5601"
 #    environment:
 #      - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
-#      - "SERVER_NAME=${KIBANA_DOMAIN}"
+#      - "SERVER_NAME=http://localhost:5601"
 #    depends_on:
 #      elasticsearch:
 #        condition: service_healthy
