@@ -109,7 +109,7 @@ services:
       elasticsearch:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD-SHELL", "curl --silent --fail localhost:8080/healthz/ready || exit 1" ]
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:8080/sync-core/healthz/ready || exit 1" ]
       interval: 10s
       timeout: 10s
       retries: 30
