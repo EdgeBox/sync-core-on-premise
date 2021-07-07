@@ -71,6 +71,15 @@ As the Sync Core runs as a horizontally scalable cluster, we don't recommend run
 We recommend you start with a local setup to test that everything is working as expected and to get familiar with the setup.
 Starting with a simpler, local setup also allows you to circle back to it and see how it works locally if you run into any issues setting up your cluster.
 
+If you want to use the Sync Core locally for development, the Sync Core and the sites must be in the same Docker network.
+You have two options to achieve this:
+- You can copy the services and volumes from our `docker-compose.yml` into your own `docker-compose.yml` file that also includes your websites.
+  - If you are exposing port 8080 for your own sites, you can remove the port exposure from the Sync Core or choose a different port to expose the Sync Core at.
+  - The distadvantage is that if anything changes in this stack, you must copy the changes to your own stack.
+- You can connect the networks of this stack to your own website Docker stack.
+  - The easiest way to accomplish this is to reference your existing network in this stack. Please checkout the `docker-compose.yml`'s `networks` section for details.
+  - The disadvantage is that if you are using identical services you may get conflicts with host names.
+
 # Prepare
 
 ## Registry access

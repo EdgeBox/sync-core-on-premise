@@ -148,3 +148,10 @@ volumes:
     driver: local
   sync_core_files:
     driver: local
+
+# Uncomment to connect this stack to another Docker network, e.g. to connect existing local websites.
+# To get the name of your existing network run: docker network ls
+#networks:
+#  default:
+#    external: true
+#    name: my-pre-existing-network
