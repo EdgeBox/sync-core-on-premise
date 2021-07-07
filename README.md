@@ -189,6 +189,9 @@ Using S3 has the advantage that the Sync Core can focus more on syndication and 
 The S3 bucket can be private or public.
 The Sync Core will sign URLs that connected sites can use to upload and download individual files.
 
+To use S3, set the `LOCAL_FILESYSTEM` environment variable to "no" and provide all four AWS environment variables.
+If you are using a local filesystem, you can leave the AWS environment variables empty or not provide them at all.
+
 ## Containers
 
 Setup either sync-core + sync-core-broker -OR- sync-core-rest + sync-core-queue + sync-core-broker using the docker-compose file as a blueprint.

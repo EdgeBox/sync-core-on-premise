@@ -98,6 +98,10 @@ services:
 
       # Optional: Set to "no" if you want to use S3 instead.
       - "LOCAL_FILESYSTEM=${LOCAL_FILESYSTEM}"
+      - "AWS_S3_BUCKET=${AWS_S3_BUCKET}"
+      - "AWS_REGION=${AWS_REGION}"
+      - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+      - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
 
       # Optional: If you want to collect errors with Sentry, you can add your DSN here.
       - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
