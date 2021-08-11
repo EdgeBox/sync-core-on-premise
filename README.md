@@ -283,3 +283,101 @@ yarn console-previews previews create-index
 ```
 
 If you want to test this locally, just prepend `docker-compose exec sync-core ` to the commands.
+
+# Configuration options
+
+## Both Sync Core and Broker
+
+### Queue
+- `SYNC_CORE_QUEUE_URL`: The queue that the Sync Core container(s) will use to process messages. The Broker will publish messages to this queue, and the Sync Core will publish and subscribe to messages.
+- `BROKER_QUEUE_URL`: The queue that the Broker container(s) will use to process messages. The Sync Core will publish messages to this queue, and the Broker will publish and subscribe to messages.
+- `MESSAGE_PREFETCH_COUNT` default `50`: How many messages to prefetch per container. If you are scaling based on CPU usage, this option must be fine-tuned to avoid both overloading, and a failure to scale (under-usage) while the queue is piling up messages. 
+
+### Database
+- `DATABASE_URL` required: The full mongodb URL, including the database name to store all data. You can provide a different database to the Broker, and the Sync Core (makes scaling easier).
+
+### Error reporting (Sentry)
+- `SENTRY_DSN` optional, default *(empty)*: A Sentry DSN used to report all errors to.
+- `TRACES_SAMPLE_RATE` optional, default `0`: Sample rate between 0 and 1 if you want to collect performance metrics with Sentry.
+- `HOSTNAME` optional, default *(empty)*: Used by Sentry to identify the host.
+
+## Sync Core
+
+### General
+- `SERVICE_NAME` required: Must be `sync-core`.
+- `SYNC_CORE_UUID` required: Provided at app.cms-content-sync.io.
+- `SYNC_CORE_SECRET` required: Provided at app.cms-content-sync.io.
+- `SERVICE_TYPES` default `rest,queue`: One of: `rest`, `queue` or `rest,queue`.
+- `FEATURE_FLAGS` as a comma-separated list, default *(empty)*: A list of feature flags to statically configure. See below for a list of all feature flags.
+- `PORT` default `8080`: The HTTP port to listen to.
+
+### Security
+- `DISABLE_HEADER_PROTECTION` default `no` (so enabled): Disable protection against commonly abused headers. Not required unless you are using customized clients.
+- `RATE_LIMIT_TIME_WINDOW_IN_MINUTES` default `5`: Limit requests per client / IP.
+- `RATE_LIMIT_NUMBER_OF_REQUESTS` default `2000`: Limit requests in the given time window to this number. This is *per container*, so if you are using a rate limiting WAF anyway, you can leave this to any high enough value.
+
+### Files
+
+#### General
+- `LOCAL_FILESYSTEM` default `no`: One of `yes` or `no`. Whether you want to use the local file system for file storage (`yes`) or S3 (`no`).
+- `MAX_FILE_SIZE_PREVIEW` in bytes, default `10240` (10 KB): The maximum size allowed for a preview HTML. This will be indexed in ElasticSearch, so this has significant impact on the search performance and required storage.
+- `MAX_FILE_SIZE_FLOW_CONFIG` in bytes, default `5242880` (5 MB): The maximum size allowed for a Flow YAML file. So the maximum required storage for Flow configs is (number of sites) * (flows per site) * (this value). If a site exceeds this it can't connect to the Sync Core so limit with caution.
+- `MAX_FILE_SIZE_CONTENT_FILE` in bytes, default `10485760` (10 MB): The maximum size allowed for a content file (a file a user uploaded to a site). Updates will be rejected if they contain a file larger than this, so limit with caution.
+
+#### Local
+- `MAX_FILE_SIZE_LOCAL_UPLOAD` in bytes, default `10485760` (10 MB): If you are using the local file system to store files, no files larger than this can be uploaded. Must be as big as the largest file size restriction above. 
+
+#### S3
+- `AWS_ACCESS_KEY_ID` default *(empty)*: If using S3, the Access Key ID from your AWS user used for uploading and downloading files.
+- `AWS_SECRET_ACCESS_KEY` default *(empty)*: If using S3, see above.
+- `AWS_S3_BUCKET` default *(empty)*: If using S3, the bucket to store files in.
+- `AWS_REGION` default *(empty)*: If using S3, the region where the bucket has been created.
+
+### Search
+- `ELASTICSEARCH_URL` default *(empty)*: A full URL to yor ElasticSearch backend that we can use to index content items and their preview and to search for content in the Pull Dashboard. If you are not using the manual pull option you won't need this.
+
+### Requests
+- `REQUEST_TIMEOUT` in milliseconds, default `60000` (60 seconds): The default timeout for all requests. Can be overwritten for different kinds of requests (see below).
+- `REQUEST_TIMEOUT_DOWNLOAD_PREVIEW` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for requesting an HTML preview from a site for a given entity.
+- `REQUEST_TIMEOUT_UPDATE_ENTITY` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for sending an update request to a connected site for an entity.
+- `REQUEST_TIMEOUT_DOWNLOAD_FILE` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for downloading a file from a site.
+- `REQUEST_TIMEOUT_UPLOAD_FILE` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for uploading a file to S3 (if S3 is used).
+
+## Broker
+- `SERVICE_NAME` required: Must be `broker`.
+
+# Feature Flags
+
+## List of Feature Flags
+
+### Search
+- `previews` *static*: Whether search / previews are available. Set to `1` if an `ELASTICSEARCH_URL` is provided and `0` if not.
+
+### Logging
+- `log:*` default `0`: Log **everything** (see below). Use with caution as this can create massive amounts of logs.
+- `log:Backend` default `0`: Enable advanced logging for the communication with the licensing backend.
+- `log:SiteRequest` default `0`: Enable advanced logging for all requests to sites.
+- `log:Files` default `0`: Enable advanced logging for files.
+- `log:Previews` default `0`: Enable advanced logging for preview indexing and searching.
+- `log:Syndication` default `0`: Enable advanced logging for the whole update / syndication process. Try to use this flag narrowly, e.g. only per site.
+
+## Manage Feature Flags
+
+You can enable Feature Flags using the environment variable `FEATURE_FLAGS` and providing a comma-separated list or by using the console command `yarn console features <enable|disable> <name> [type] [id]`.
+
+## Dynamic usage (CLI)
+
+To list available flags, and their current values in your installed Sync Core, use `yarn console features list`. To get the settings for an individual flag, use `yarn console features get <name> [type] [id]`.
+
+To revert to the defaults, use `yarn console features unset <name> [type] [id]`.
+
+## Narrow usage
+
+Narrow down the usage of certain features to avoid an unnecessary performance impact. The `type` argument can be one of the following (defaults to `sync-core`):
+
+- `sync-core`: The whole Sync Core, so global (default).
+- `contract`: Enable/Disable the feature for the given contract.
+- `project`: Enable/Disable the feature for the given project.
+- `site`: Enable/Disable the feature for the given site.
+
+All types except for the sync-core require an ID to be provided. You can get the ID from the MongoDB collections manually if needed.
