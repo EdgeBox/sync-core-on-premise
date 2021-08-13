@@ -295,6 +295,8 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 
 ### Database
 - `DATABASE_URL` required: The full mongodb URL, including the database name to store all data. You can provide a different database to the Broker, and the Sync Core (makes scaling easier).
+- `DATABASE_RETRY_ATTEMPTS` optional, default `10`: Number of retries to connect or reconnect to the database before killing the process.
+- `DATABASE_LOG_LEVEL` optional, one of `error`, `warn`, `info`, `debug`, default `warn`: Log level for the database.
 
 ### Error reporting (Sentry)
 - `SENTRY_DSN` optional, default *(empty)*: A Sentry DSN used to report all errors to.
