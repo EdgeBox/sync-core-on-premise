@@ -297,6 +297,8 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 - `DATABASE_URL` required: The full mongodb URL, including the database name to store all data. You can provide a different database to the Broker, and the Sync Core (makes scaling easier).
 - `DATABASE_RETRY_ATTEMPTS` optional, default `10`: Number of retries to connect or reconnect to the database before killing the process.
 - `DATABASE_LOG_LEVEL` optional, one of `error`, `warn`, `info`, `debug`, default `warn`: Log level for the database.
+- `DATABASE_ENABLE_SSL` optional, one of `true` or `false`, default *(empty)*: Usually not required if you enable ssl/tls using the query parameters of the `DATABASE_URL`. If you run into a connection timeout, try removing `ssl=true` and `tls=true` from the database URL and use these environment variables instead. Experienced this issue when using CosmosDB.
+- DATABASE_ENABLE_TLS optional, one of `true` or `false`, default *(empty)*: Usually not required; same as `DATABASE_ENABLE_SSL`, but for a different library internally; set to the same value as your `DATABASE_ENABLE_SSL` variable.
 
 ### Error reporting (Sentry)
 - `SENTRY_DSN` optional, default *(empty)*: A Sentry DSN used to report all errors to.
