@@ -59,6 +59,11 @@ You can do this separation later, too, as the sync-core service can simply run i
 
 As the Sync Core runs as a horizontally scalable cluster, we don't recommend running multiple Sync Cores simultaneously unless you want to have a separate Sync Core for testing.
 
+## Compatibility
+
+Please note that we're only testing the Sync Core with *real* MongoDB servers and not substitute services like AWS DocumentDB or Azure CosmosDB. CosmosDB has known restrictions on indexes that make it incompatible with Content Sync; you will receive an error like this during start-up:
+> MongoError: Unique and compound indexes do not support nested paths.
+
 ## Optional
 - If you would like to follow your own deployment workflow, you can pull the image and store it in your own     private registry with your own release tags.
 - Store the logs centrally so you can easily access them.
@@ -298,7 +303,7 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 - `DATABASE_RETRY_ATTEMPTS` optional, default `10`: Number of retries to connect or reconnect to the database before killing the process.
 - `DATABASE_LOG_LEVEL` optional, one of `error`, `warn`, `info`, `debug`, default `warn`: Log level for the database.
 - `DATABASE_ENABLE_SSL` optional, one of `true` or `false`, default *(empty)*: Usually not required if you enable ssl/tls using the query parameters of the `DATABASE_URL`. If you run into a connection timeout, try removing `ssl=true` and `tls=true` from the database URL and use these environment variables instead. Experienced this issue when using CosmosDB.
-- DATABASE_ENABLE_TLS optional, one of `true` or `false`, default *(empty)*: Usually not required; same as `DATABASE_ENABLE_SSL`, but for a different library internally; set to the same value as your `DATABASE_ENABLE_SSL` variable.
+- `DATABASE_ENABLE_TLS` optional, one of `true` or `false`, default *(empty)*: Usually not required; same as `DATABASE_ENABLE_SSL`, but for a different library internally; set to the same value as your `DATABASE_ENABLE_SSL` variable.
 
 ### Error reporting (Sentry)
 - `SENTRY_DSN` optional, default *(empty)*: A Sentry DSN used to report all errors to.
