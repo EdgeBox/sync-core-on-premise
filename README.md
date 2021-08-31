@@ -344,6 +344,7 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 
 ### Search
 - `ELASTICSEARCH_URL` default *(empty)*: A full URL to yor ElasticSearch backend that we can use to index content items and their preview and to search for content in the Pull Dashboard. If you are not using the manual pull option you won't need this.
+- `ELASTICSEARCH_ADD_KEYWORD_SUFFIX` default *(empty)*: One of: `yes`, `no`. Not required in most cases. If you forgot to setup the search index before indexing documents, Elasticsearch will not change the existing field types but rather create new fields with a `.keyword` suffix. In this case, pass `yes` as a value.
 
 ### Requests
 - `REQUEST_TIMEOUT` in milliseconds, default `60000` (60 seconds): The default timeout for all requests. Can be overwritten for different kinds of requests (see below).
