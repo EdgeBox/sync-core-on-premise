@@ -352,6 +352,8 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 - `REQUEST_TIMEOUT_UPDATE_ENTITY` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for sending an update request to a connected site for an entity.
 - `REQUEST_TIMEOUT_DOWNLOAD_FILE` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for downloading a file from a site.
 - `REQUEST_TIMEOUT_UPLOAD_FILE` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for uploading a file to S3 (if S3 is used).
+- `REQUEST_MAX_REDIRECTS` default `5`: The max number of redirects to follow when making a request against a site.
+- `REQUEST_MAX_RESPONSE_BODY_SIZE` in bytes, default `4194304` (4MB): The max allowed response body size when making a request against a site to update or retrieve an entity or entity list.
 
 ## Broker
 - `SERVICE_NAME` required: Must be `broker`.
