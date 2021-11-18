@@ -354,6 +354,8 @@ If you want to test this locally, just prepend `docker-compose exec sync-core ` 
 - `REQUEST_TIMEOUT_UPLOAD_FILE` in milliseconds, default *(REQUEST_TIMEOUT)*: The timeout for uploading a file to S3 (if S3 is used).
 - `REQUEST_MAX_REDIRECTS` default `5`: The max number of redirects to follow when making a request against a site.
 - `REQUEST_MAX_RESPONSE_BODY_SIZE` in bytes, default `4194304` (4MB): The max allowed response body size when making a request against a site to update or retrieve an entity or entity list.
+- `DEFAULT_MAX_REQUESTS_PER_MINUTE_PER_SITE` default `20`: How many requests will be made to a site per minute by default. Users can overwrite this setting per site or set another default for all sites in their project.
+- `DEFAULT_MAX_PARALLEL_REQUESTS_PER_SITE` default `10`: How many requests will be made to a site in parallel by default. Users can overwrite this setting per site or set another default for all sites in their project. This is only relevant for requests that couldn't be processed immediately (because the per-minute limit throttled them or because they failed) and is only used by the cron that processes these messages once a minute.
 
 ## Broker
 - `SERVICE_NAME` required: Must be `broker`.
