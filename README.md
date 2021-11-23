@@ -395,3 +395,8 @@ Narrow down the usage of certain features to avoid an unnecessary performance im
 - `site`: Enable/Disable the feature for the given site.
 
 All types except for the sync-core require an ID to be provided. You can get the ID from the MongoDB collections manually if needed.
+
+# Monitoring
+
+Apart monitoring that the health checks work inside your cluster we also recommend you setup HTTP/HTTPS monitoring to monitor the uptime from outside your cluster.
+If your Sync Core is available at `https://sync-core.example.com`, please setup monitoring for `https://sync-core.example.com/sync-core/healthz/live` that expects a 200 OK response as JSON.
