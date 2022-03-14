@@ -2,7 +2,7 @@
 
 ## Support
 
-If you need any help with this, please contact us at support \[at\] cms-content-sync.io.
+If you need any help with this, please contact us at https://support.cms-content-sync.io/
 
 ## Content Sync
 
