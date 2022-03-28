@@ -2,6 +2,9 @@ title: "Sync Core: on-premise"
 
 remote_theme: just-the-docs/just-the-docs
 
+baseurl: ""
+url: "https://sync-core-on-premise.support.cms-content-sync.io"
+
 color_scheme: content-sync
 
 search_enabled: true
