@@ -1,0 +1,5 @@
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: content-sync
+
+search_enabled: true
