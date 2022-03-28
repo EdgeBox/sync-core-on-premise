@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongo:
-    image: mongo:4.4.6
+    image: mongo:4.4
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -70,7 +70,7 @@ services:
 #        condition: service_healthy
 
   sync-core:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.0
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.1
     restart: always
     # You can choose any other port if you like. The container will always listen to :8080.
     ports:
@@ -92,6 +92,8 @@ services:
 
       # Static flags: if needed for debugging the setup at any point.
       #- "FEATURE_FLAGS=log:SyndicationHandlerService,log:SyndicationInternalOperationService,log:SyndicationSiteOperationService,log:SiteRequestService,log:PreviewsService"
+      # Or, to enable all additional logging (NOT RECOMMENDED FOR PRODUCTION USE):
+      #- "FEATURE_FLAGS=log:*"
 
       - "BROKER_QUEUE_URL=${BROKER_QUEUE_URL}"
       - "ELASTICSEARCH_URL=${ELASTICSEARCH_URL}"
@@ -105,6 +107,8 @@ services:
 
       # Optional: If you want to collect errors with Sentry, you can add your DSN here.
       - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
+      # Optional: Get logs in JSON format.
+      #- "LOG_FORMAT=json"
     depends_on:
       mongo:
         condition: service_healthy
@@ -119,7 +123,7 @@ services:
       retries: 30
 
   sync-core-broker:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.0
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.1
     restart: always
     environment:
       # Must be static "broker"
@@ -140,7 +144,7 @@ services:
       elasticsearch:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD-SHELL", "yarn run console health ready || exit 1" ]
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:8080/sync-core/healthz/ready || exit 1" ]
       interval: 10s
       timeout: 10s
       retries: 30
