@@ -21,13 +21,13 @@ nav_order: 5
 
 ## Manage Feature Flags
 
-You can enable Feature Flags using the environment variable `FEATURE_FLAGS` and providing a comma-separated list or by using the console command `yarn console features <enable|disable> <name> [type] [id]`.
+You can enable Feature Flags using the environment variable `FEATURE_FLAGS` and providing a comma-separated list or by using the console command `sync-core features <enable|disable> <name> [type] [id]`.
 
 ## Dynamic usage (CLI)
 
-To list available flags, and their current values in your installed Sync Core, use `yarn console features list`. To get the settings for an individual flag, use `yarn console features get <name> [type] [id]`.
+To list available flags, and their current values in your installed Sync Core, use `sync-core features list`. To get the settings for an individual flag, use `sync-core features get <name> [type] [id]`.
 
-To revert to the defaults, use `yarn console features unset <name> [type] [id]`.
+To revert to the defaults, use `sync-core features unset <name> [type] [id]`.
 
 ## Narrow usage
 

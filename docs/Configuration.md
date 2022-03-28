@@ -25,6 +25,15 @@ nav_order: 4
 - `TRACES_SAMPLE_RATE` optional, default `0`: Sample rate between 0 and 1 if you want to collect performance metrics with Sentry.
 - `HOSTNAME` optional, default *(empty)*: Used by Sentry to identify the host.
 
+### Logging
+- `LOG_LEVEL` optional, default *info*: Either `error`, `warn`, `info`, `verbose` or `debug`.
+- `LOG_FORMAT` optional, default `plain`: Either `plain` or `json`.
+
+## Health checks
+- `HEALTH_EVENT_LOOP_SAMPLE_INTERVAL` optional, default `50`: How often to run the event loop check in milliseconds, i.e. CPU usage based on ticks of the app.
+- `HEALTH_EVENT_LOOP_LIMIT` optional, default `500`: How long a tick may last before it's considered unhealthy in milliseconds, i.e. the allowed delay for the sample tick to run.
+- `HEALTH_DNS_URL` optional, default `https://www.google.com/`: What URL to use for DNS health checks. Should be an external, public service to be comparable to your sites but shouldn't be your sites to avoid cascading failures.
+
 ## Sync Core
 
 ### General

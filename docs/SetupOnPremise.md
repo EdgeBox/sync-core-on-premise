@@ -31,20 +31,21 @@ You can enable auto scaling and redundancy for all two/three Sync Core services.
 
 ## Configure readiness / liveness checks
 
+You can use curl inside the container to run health, e.g.
+- Readiness: `curl --fail localhost:8080/sync-core/healthz/ready`
+- Liveness: `curl --fail localhost:8080/sync-core/healthz/live`
+
 ### Readiness
 
-Endpoint (if REST):
+Endpoint:
 - Port: 8080
 - Path: /sync-core/healthz/ready
-
-CLI (if broker or queue):
-- `yarn run console health ready`
 
 We test with the following probe config:
 ```yaml
 failureThreshold: 2
 initialDelaySeconds: 10
-periodSeconds: 30
+periodSeconds: 10
 successThreshold: 2
 timeoutSeconds: 5
 ```
@@ -53,18 +54,15 @@ You can adjust the config to match your own best practices.
 
 ### Liveness
 
-Endpoint (if REST):
+Endpoint:
 - Port: 8080
 - Path: /sync-core/healthz/live
 
-CLI (if broker or queue):
-- `yarn run console health live`
-
 We test with the following probe config:
 ```yaml
-failureThreshold: 2
+failureThreshold: 18
 initialDelaySeconds: 30
-periodSeconds: 30
+periodSeconds: 10
 successThreshold: 1
 timeoutSeconds: 5
 ```
@@ -85,12 +83,15 @@ The cron containers must receive the same environment variables as the service c
 If you are using rest+queue separately, replace `sync-core` with `sync-core-queue` below.
 
 Create the following two cron jobs:
-- Every hour at minute 0 (sync-core): yarn run console syndication update-stats
-- Every minute (ideally close to second 0) (sync-core-broker): yarn run console-broker messages cron
+- Every hour at minute 0 (sync-core): sync-core syndication update-stats
+- Every minute (ideally close to second 0) (sync-core-broker): sync-core-broker messages cron
 
 **Caution: The message broker cron job is NOT expected to be retried on failure as jobs are not expected to overlap.**
 
 All other cron jobs can be retried on failure.
+
+**Caution: Some cron jobs are expected to run early every minute, so you need a pod scheduler that has new pods up and running within 15s.**
+**If you are using a slow scheduler like Fargate please reach out to us for alternative cron job scheduling options.**
 
 ## Logging
 
@@ -108,7 +109,7 @@ If your Sync Core is available at `https://sync-core.example.com`, please setup 
 Run in a fresh or existing sync-core container:
 ```bash
 # This will setup the database with all required indices.
-yarn console install new
+sync-core install new
 
 # This will create the index in Elasticsearch.
 yarn console-previews previews create-index

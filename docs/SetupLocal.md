@@ -39,7 +39,7 @@ docker-compose up -d
 Run in a fresh or existing sync-core container:
 ```bash
 # This will setup the database with all required indices.
-yarn console install new
+sync-core install new
 
 # This will create the index in Elasticsearch.
 yarn console-previews previews create-index
@@ -63,7 +63,7 @@ Run the health checks manually for all containers (see below).
 Sometimes Docker can shutdown your container before the log out put has been fully processed.
 So if your container restarts but you don't see any error message, try starting the service manually to get all log output:
 ```bash
-docker-compose run --rm sync-core yarn start
+docker-compose run --rm sync-core
 ```
 
 **RabbitMQ not ready**
@@ -83,14 +83,14 @@ will return status code 200.
 
 ```bash
 # Verify REST is ready.
-curl localhost:8080/sync-core/healthz/ready
-curl localhost:8080/sync-core/healthz/live
+curl -f localhost:8080/sync-core/healthz/ready
+curl -f localhost:8080/sync-core/healthz/live
 
 # Verify the broker is operational.
-docker-compose exec sync-core-broker curl localhost:8080/sync-core/healthz/ready
-docker-compose exec sync-core-broker curl localhost:8080/sync-core/healthz/live
+docker-compose exec sync-core-broker curl -f localhost:8080/sync-core/healthz/ready
+docker-compose exec sync-core-broker curl -f localhost:8080/sync-core/healthz/live
 
 # If you have divided the Sync Core into "rest" and "queue", you can test the queue like:
-#docker-compose exec sync-core-queue curl localhost:8080/sync-core/healthz/ready
-#docker-compose exec sync-core-queue curl localhost:8080/sync-core/healthz/live
+#docker-compose exec sync-core-queue curl -f localhost:8080/sync-core/healthz/ready
+#docker-compose exec sync-core-queue curl -f localhost:8080/sync-core/healthz/live
 ```
