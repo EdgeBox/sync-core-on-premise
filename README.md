@@ -13,3 +13,7 @@ Distribute your content automatically to all connected sites or provide your edi
 
 This repository documents the setup of the Sync Core for local and on-premise installations.
 The full documentation is available [here](https://edgebox.github.io/sync-core-on-premise/).
+
+# Releases
+
+Please checkout the [changelog](CHANGELOG.md) for details about our releases.
