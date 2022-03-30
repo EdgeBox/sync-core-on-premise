@@ -1,3 +1,6 @@
+# 2.1.2
+- fix: subscriptions sometimes weren't refreshed automatically after renewal
+
 # 2.1.1
 - **fix: fix translations of embedded entities sometimes not being sent.**
 - fix: some readiness checks were used as liveness checks.
