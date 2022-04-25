@@ -1,3 +1,10 @@
+# 2.1.3
+- **fix: "pull all" sometimes pulled an older revision instead of the newest.**
+- **fix: "pull all" sometimes didn't respect taxonomy term filters.**
+- fix: when a pull starts, all running pull operations of the same entity to the same site are cancelled now.
+- fix: console command output now has the new log format as well.
+- fix: the error handler of console commands threw a follow-up error, hiding the original error.
+
 # 2.1.2
 - fix: subscriptions sometimes weren't refreshed automatically after renewal
 
