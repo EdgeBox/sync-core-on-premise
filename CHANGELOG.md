@@ -1,6 +1,7 @@
 # 2.2.0
 - **feat: allow dynamically assigning, un-assigning and re-assigning pools to content.**
   - *this will delete content if a pulling site no longer matches any of the pools of a content item after an update.*
+- feat: `sync-core-previews` is now available as a slightly faster replacement for `yarn console-previews previews`.
 - fix: content sometimes didn't show up in the pull dashboard, especially when pushing to multiple pools.
   - *if you are missing content in the pull dashboard before 2.2.0 or if you see duplicate content in the pull dashboard after upgrading to 2.2.0, please run `sync-core-previews reindex all`* 
 

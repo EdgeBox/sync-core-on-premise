@@ -42,7 +42,7 @@ Run in a fresh or existing sync-core container:
 sync-core install new
 
 # This will create the index in Elasticsearch.
-yarn console-previews previews create-index
+sync-core-previews create-index
 ```
 
 If you want to test this locally, just prepend `docker-compose exec sync-core ` to the commands.
