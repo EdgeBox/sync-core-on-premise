@@ -1,3 +1,9 @@
+# 2.2.0
+- **feat: allow dynamically assigning, un-assigning and re-assigning pools to content.**
+  - *this will delete content if a pulling site no longer matches any of the pools of a content item after an update.*
+- fix: content sometimes didn't show up in the pull dashboard, especially when pushing to multiple pools.
+  - *if you are missing content in the pull dashboard before 2.2.0 or if you see duplicate content in the pull dashboard after upgrading to 2.2.0, please run `sync-core-previews reindex all`* 
+
 # 2.1.3
 - **fix: "pull all" sometimes pulled an older revision instead of the newest.**
 - **fix: "pull all" sometimes didn't respect taxonomy term filters.**
