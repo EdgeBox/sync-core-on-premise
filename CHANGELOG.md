@@ -1,3 +1,7 @@
+# 2.2.1
+- **fix: avoid pull-migrations sometimes pulling outdated entity revisions.**
+- fix: improve mongodb performance of pull-migrations for huge data sets (50k+ entities).
+
 # 2.2.0
 - **feat: allow dynamically assigning, un-assigning and re-assigning pools to content.**
   - *this will delete content if a pulling site no longer matches any of the pools of a content item after an update.*
