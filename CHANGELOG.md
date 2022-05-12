@@ -1,3 +1,8 @@
+# 2.3.0
+- **feat: allow re-assigning Pools and optionally deleting content that no longer matches any configured Pools.**
+- fix: pull dashboard filter: entity type filter was sometimes ignored.
+- fix: pull dashboard config: only show relevant entity types to filter by.
+
 # 2.2.1
 - **fix: avoid pull-migrations sometimes pulling outdated entity revisions.**
 - fix: improve mongodb performance of pull-migrations for huge data sets (50k+ entities).
