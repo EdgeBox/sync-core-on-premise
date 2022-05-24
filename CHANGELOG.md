@@ -1,3 +1,14 @@
+# 2.4.0
+- feat: allow aborting updates using the UI.
+- feat: allow restarting updates using the UI.
+- feat: store entity view URL per translation to make use as canonical URL for SEO more reliable.
+- feat: allow querying for all updates, including those from migrations to make the content dashboard UI view more usable.
+- feat: save entity and pools reference after asynchronously pushing entity from a site, allowing to see the update status in the UI.
+- fix: deactivate and re-activate sites automatically during the license check if their status changed in the backend.
+- fix: don't count aborted updates as regular usage.
+- stability: query for update status could return status for wrong entity if it shared the same UUID but had a different entity type.
+- stability: never overwrite "aborted" status of updates in case of race conditions.
+
 # 2.3.0
 - **feat: allow re-assigning Pools and optionally deleting content that no longer matches any configured Pools.**
 - fix: pull dashboard filter: entity type filter was sometimes ignored.
