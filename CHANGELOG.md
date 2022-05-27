@@ -1,6 +1,11 @@
+# 2.4.1
+- feat: always log REST request failures, including the response status code.
+- feat: logs are contextually rich now, i.e. log additional related meta-data like the client's site ID or a syndication ID where available.
+- feat: logs are non-blocking now, i.e. don't wait for log messages to be processed to increase performance of updates.
+
 # 2.4.0
-- feat: allow aborting updates using the UI.
-- feat: allow restarting updates using the UI.
+- **feat: allow aborting updates using the UI.**
+- **feat: allow restarting updates using the UI.**
 - feat: store entity view URL per translation to make use as canonical URL for SEO more reliable.
 - feat: allow querying for all updates, including those from migrations to make the content dashboard UI view more usable.
 - feat: save entity and pools reference after asynchronously pushing entity from a site, allowing to see the update status in the UI.
