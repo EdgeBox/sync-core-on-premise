@@ -1,3 +1,11 @@
+# 2.4.2
+- feat: individually encrypt authentication secrets for connected sites.
+  - you may want to provide a custom `AUTHENTICATION_ENCRYPTION_SECRET` environment variable using e.g. `openssl rand -hex 32`.
+  - you may want to re-save all existing entries using `sync-core site-authentication resave`.
+- fix: the Sync Core version in the log messages was always "dev" instead of the semver version (from v2.4.1).
+- fix: many previous messages weren't showing in the logs (from v2.4.1).
+- fix: improve config validation for the Sync Core UUID and secret.
+
 # 2.4.1
 - feat: always log REST request failures, including the response status code.
 - feat: logs are contextually rich now, i.e. log additional related meta-data like the client's site ID or a syndication ID where available.
