@@ -43,6 +43,7 @@ nav_order: 4
 - `SERVICE_TYPES` default `rest,queue`: One of: `rest`, `queue` or `rest,queue`.
 - `FEATURE_FLAGS` as a comma-separated list, default *(empty)*: A list of feature flags to statically configure. See below for a list of all feature flags.
 - `PORT` default `8080`: The HTTP port to listen to.
+- `AUTHENTICATION_ENCRYPTION_SECRET` default `SYNC_CORE_SECRET` **strongly recommended**: A custom secret to use for encrypting the credentials that the Sync Core uses to access connected sites. Expects a 64-length random hex string e.g. from `openssl rand -hex 32` (32 bytes = 64 hex string).
 
 ### Security
 - `DISABLE_HEADER_PROTECTION` default `no` (so enabled): Disable protection against commonly abused headers. Not required unless you are using customized clients.
