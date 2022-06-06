@@ -23,6 +23,8 @@ nav_order: 2
   - The Sync Core can still be private, but users must have direct HTTP/HTTPS access to it.
 - We provide you credentials to pull the Sync Core from our private Docker registry. The Sync Core may not be shared
   publicly and only stored at secured registries.
+- As the Sync Core stores credentials of all sites that are connected to it we strongly recommend to encrypt the MongoDB
+  storage + backups and use TLS/SSL everywhere.
 
 As the Sync Core runs as a horizontally scalable cluster, we don't recommend running multiple Sync Cores simultaneously unless you want to have a separate Sync Core for testing.
 
