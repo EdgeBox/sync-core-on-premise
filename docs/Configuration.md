@@ -84,3 +84,4 @@ nav_order: 4
 
 ## Broker
 - `SERVICE_NAME` required: Must be `broker`.
+- `MESSAGE_LIMIT_PER_CRON_RUN` default `1000`: How many messages to process per cron run. If you see e.g. `ECONNRESET` during cron job runs from RabbitMQ use this setting to decrease the load.

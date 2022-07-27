@@ -1,3 +1,12 @@
+# 2.4.3
+- feat: allow syndicated deletions of embedded entities (usually files, media etc.).
+- feat: allow sites to customize request timeouts from 5s to 120s.
+- feat: allow throttling the number of messages processed per cron run by the broker using `MESSAGE_LIMIT_PER_CRON_RUN`.
+- fix: avoid error for messages about failed syndications that were retried in the meantime.
+- fix: reset authentication cache (sessions) when re-registering a site for cookie auth users.
+- chore: improve performance of configuration exports from sites.
+- chore: slightly decrease the number of requested entities per page from 25 to 20.
+
 # 2.4.2
 - feat: individually encrypt authentication secrets for connected sites.
   - you may want to provide a custom `AUTHENTICATION_ENCRYPTION_SECRET` environment variable using e.g. `openssl rand -hex 32`.
