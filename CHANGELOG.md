@@ -1,3 +1,7 @@
+# 2.4.7
+- feat: abort updates that are stuck, i.e. running for more than 48 hours.
+- fix: abort whole chain of updates if the root update fails; only aborted the first in line until now.
+
 # 2.4.6
 - feat: allow basic auth protection for staging environments on top of regular authentication.
 - feat: improve performance monitoring through Sentry.
