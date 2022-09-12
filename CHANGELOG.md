@@ -1,3 +1,7 @@
+# 2.4.6
+- feat: allow basic auth protection for staging environments on top of regular authentication.
+- feat: improve performance monitoring through Sentry.
+
 # 2.4.5
 - feat: allow pushing entities asynchronously to drastically improve the editor experience.
 - feat: allow making one request per translation for sites using both many translations and many nested entities.
