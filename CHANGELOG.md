@@ -1,3 +1,6 @@
+# 2.4.4
+- fix: translations sometimes weren't correctly synchronized with "Pull All".
+
 # 2.4.3
 - feat: allow syndicated deletions of embedded entities (usually files, media etc.).
 - feat: allow sites to customize request timeouts from 5s to 120s.
