@@ -1,3 +1,8 @@
+# 2.4.8
+- fix: improve queue resilience for .ack'd messages and unresponsive RabbitMQ connections.
+- fix: sometimes deletion requests were sent to sites that didn't have the entity.
+- fix: re-authentication for cookie login sometimes failed when also using basic auth.
+
 # 2.4.7
 - feat: abort updates that are stuck, i.e. running for more than 48 hours.
 - fix: abort whole chain of updates if the root update fails; only aborted the first in line until now.
