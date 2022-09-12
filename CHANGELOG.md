@@ -1,3 +1,11 @@
+# 2.4.5
+- feat: allow pushing entities asynchronously to drastically improve the editor experience.
+- feat: allow making one request per translation for sites using both many translations and many nested entities.
+- feat: speed up dependent requests by not having to wait for the message cron to run.
+- feat: allow updating the base URL of sites more easily.
+- fix: for "pull changed" mass updates, respect the exact entity revision to save unnecessary updates.
+- fix: when changing the default throttling for all sites, apply the new limit immediately.
+
 # 2.4.4
 - fix: translations sometimes weren't correctly synchronized with "Pull All".
 
