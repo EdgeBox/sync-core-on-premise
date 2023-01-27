@@ -1,3 +1,15 @@
+# 2.4.11
+- fix: allow content names / titles of up to 1000 characters.
+
+# 2.4.10
+- feat: provide a CLI command to print site auth for debugging.
+- fix: log request details when login request for cookie auth fails.
+
+# 2.4.9
+- feat: allow customizing the RAM limit for the health check using `HEALTH_MEMORY_LIMIT`.
+- feat: send messages as *persistent* to RabbitMQ.
+- fix: slow database query could lead to queue connection loss.
+
 # 2.4.8
 - fix: improve queue resilience for .ack'd messages and unresponsive RabbitMQ connections.
 - fix: sometimes deletion requests were sent to sites that didn't have the entity.

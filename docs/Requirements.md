@@ -15,6 +15,8 @@ nav_order: 2
   - elasticsearch: 7.12.
   - S3 bucket -OR- file system access.
   - Any cron / scheduler.
+- Downstream services:
+  - A load balancer or a reverse proxy like apache or nginx: Offload HTTPS and forward requests as HTTP to the Sync Core.
 - Network rules must:
   - Allow GET, POST, PUT, DELETE between the Sync Core and the connected sites and vice versa.
   - Allow POST and GET from the Sync Core to api.cms-content-sync.io.

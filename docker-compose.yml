@@ -18,7 +18,7 @@ services:
   rabbitmq:
     # We are including the management features here to have a UI if we needed to debug anything. You can separate them
     # if you are self-hosting this as a cluster.
-    image: rabbitmq:3.8-management
+    image: rabbitmq:3.10-management
     restart: always
     # Uncomment if you want to debug this service.
     #ports:

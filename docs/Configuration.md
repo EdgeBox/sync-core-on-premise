@@ -10,7 +10,11 @@ nav_order: 4
 
 ### Queue
 - `SYNC_CORE_QUEUE_URL`: The queue that the Sync Core container(s) will use to process messages. The Broker will publish messages to this queue, and the Sync Core will publish and subscribe to messages.
+  - If you are using TLS encryption start the URL with `amqps://` instead of `amqp://`.
+  - We recommend providing a heartbeat of 15s in the URL like `?heartbeat=15`.
 - `BROKER_QUEUE_URL`: The queue that the Broker container(s) will use to process messages. The Sync Core will publish messages to this queue, and the Broker will publish and subscribe to messages.
+  - If you are using TLS encryption start the URL with `amqps://` instead of `amqp://`.
+  - We recommend providing a heartbeat of 15s in the URL like `?heartbeat=15`.
 - `MESSAGE_PREFETCH_COUNT` default `50`: How many messages to prefetch per container. If you are scaling based on CPU usage, this option must be fine-tuned to avoid both overloading, and a failure to scale (under-usage) while the queue is piling up messages. 
 
 ### Database
@@ -33,6 +37,7 @@ nav_order: 4
 - `HEALTH_EVENT_LOOP_SAMPLE_INTERVAL` optional, default `50`: How often to run the event loop check in milliseconds, i.e. CPU usage based on ticks of the app.
 - `HEALTH_EVENT_LOOP_LIMIT` optional, default `500`: How long a tick may last before it's considered unhealthy in milliseconds, i.e. the allowed delay for the sample tick to run.
 - `HEALTH_DNS_URL` optional, default `https://www.google.com/`: What URL to use for DNS health checks. Should be an external, public service to be comparable to your sites but shouldn't be your sites to avoid cascading failures.
+- `HEALTH_MEMORY_LIMIT` optional, default `512`: How much RAM the application is expected to use in MB before the health check fails. Should be your container RAM limit minus 384.
 
 ## Sync Core
 
