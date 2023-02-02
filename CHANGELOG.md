@@ -1,3 +1,7 @@
+# 2.5.0
+- feat: add cache to improve performance of entity queries. after the update, please run once: sync-core features enable entity:latest
+- feat: 404 responses now result in the status Aborted rather than Failed (so a soft / expected failure).
+
 # 2.4.11
 - fix: allow content names / titles of up to 1000 characters.
 
