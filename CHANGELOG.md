@@ -1,3 +1,10 @@
+# 2.5.1
+- feat: allow names for entities that are longer than 200 characters.
+- feat: delete old syndication entities.
+- feat: delete old migration entities.
+- feat: delete unused files.
+- fix: the number of entities displayed incorrectly at the backend.
+
 # 2.5.0
 - feat: add cache to improve performance of entity queries. after the update, please run once: sync-core features enable entity:latest
 - feat: 404 responses now result in the status Aborted rather than Failed (so a soft / expected failure).
