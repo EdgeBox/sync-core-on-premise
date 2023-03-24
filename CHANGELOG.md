@@ -1,3 +1,6 @@
+# 2.5.2
+- fix: many simultaneous, failing updates for the same entity could lead to a queue overload.
+
 # 2.5.1
 - feat: allow names for entities that are longer than 200 characters.
 - feat: delete old syndication entities.
