@@ -1,3 +1,12 @@
+# 2.5.3
+- feat: improved deletion speed.
+- feat: allow sites to provide a "status" REST interface to asynchronously query for availability and enabled features.
+- feat: allow more detailed entity type configurations to prepare for the Drupal module v3.
+- feat: send the hourly usage stats through the queue to throttle requests to the licensing backend.
+- feat: allow viewing serialized entities in a beautified format for debugging.
+- feat: improve performance for saving Flows.
+- fix: sometimes deleted syndications from the source site could lead to an error when viewing the synchronization dashboard.
+
 # 2.5.2
 - fix: many simultaneous, failing updates for the same entity could lead to a queue overload.
 
