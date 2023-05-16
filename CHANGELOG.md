@@ -1,3 +1,8 @@
+# 2.5.4
+- feat: allow throttling backend requests.
+- fix: make pool assignments to usage entities more reliable.
+- fix: ensure sites can be re-activated after being marked as inactive automatically.
+
 # 2.5.3
 - feat: improved deletion speed.
 - feat: allow sites to provide a "status" REST interface to asynchronously query for availability and enabled features.
