@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongo:
-    image: mongo:4.4
+    image: mongo:6.0
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -9,16 +9,15 @@ services:
     volumes:
       - mongo:/data/db
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh mongo:27017/test --quiet
       interval: 10s
       timeout: 5s
       retries: 30
-      start_period: 5s
 
   rabbitmq:
     # We are including the management features here to have a UI if we needed to debug anything. You can separate them
     # if you are self-hosting this as a cluster.
-    image: rabbitmq:3.10-management
+    image: rabbitmq:3.12-management
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -31,7 +30,7 @@ services:
       retries: 30
 
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.12.0"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:8.8.2"
     # Uncomment if you want to debug this service.
     #ports:
     #  - "9200:9200"
@@ -70,7 +69,7 @@ services:
 #        condition: service_healthy
 
   sync-core:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.5
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.0
     restart: always
     # You can choose any other port if you like. The container will always listen to :8080.
     ports:
@@ -123,7 +122,7 @@ services:
       retries: 30
 
   sync-core-broker:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:2.1
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.0
     restart: always
     environment:
       # Must be static "broker"

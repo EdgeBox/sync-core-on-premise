@@ -1,3 +1,35 @@
+# 3.0
+
+**THIS UPDATE REQUIRES YOU TO RUN `sync-core install update` AND UPDATE UPSTREAM SERVICES TO NEW MAJOR VERSIONS**
+
+- feat: allow connecting local sites that poll for requests instead.
+- feat: automatically deactivate local sites after 30 days of inactivity instead of 3.
+- feat: report last activity of sites to the backend.
+- feat: use mongodb v6.0 and elasticsearch v8.8.
+- feat: allow running requests manually through the CLI for debugging.
+- feat: add new properties status and appType to projects.
+- feat: allow searching for content by their UUID and Unique ID in the pull dashboard.
+- feat: check queue size before adding new messages to avoid overload from too many large, simultaneous requests (requires management URL to be provided).
+- feat: allow providing auth details immediately during site registration.
+- feat: allow only updating changed translations when using request-per-translation flag.
+- feat: allow skipping unchanged, embedded entities during updates to favor performance over reliability.
+- feat: capture more update stats like request times and full duration.
+- feat: provide new boolean flags for updates to improve performance.
+- fix: ensure auth cache is cleared when sites are re-registered.
+- fix: guess file mimetype based on physical file name, not human-entered name.
+- fix: avoid immediate retries after aborts breaking updates.
+- fix: make entity hashes more reliable to use for versioning.
+- fix: updates sometimes didn't show correctly in the entity status view.
+- fix: cancel dependent updates when the root update is aborted or fails.
+- fix: re-running an update sometimes did nothing.
+- fix: log timeouts for update operations correctly.
+- chore: order update statuses in migrations for UI.
+- chore: always log site deactivations.
+- chore: use better database index for message removal in broker.
+- chore: add new indices for update dashboard.
+- chore: save site secret only at once place.
+- chore: allow providing UUID for console feature commands.
+
 # 2.5.4
 - feat: allow throttling backend requests.
 - fix: make pool assignments to usage entities more reliable.
