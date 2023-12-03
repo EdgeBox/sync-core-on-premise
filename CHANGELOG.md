@@ -1,4 +1,39 @@
-# 3.0
+# 3.0.8
+- feat: send file details along with entity update requests to improve performance.
+
+# 3.0.7
+- feat: allow multiple DNS check endpoints to improve robustness.
+- feat: keep full syndication history for 3 months by default.
+- chore: add more logging for when syndications are aborted.
+
+# 3.0.6
+- feat: allow sites to only respond with 2xx status codes even on failures to bypass CDN rules.
+- fix: pagination for migrations was bugged.
+
+# 3.0.5
+- feat: improve sentry context data.
+- feat: don't send large "embed"/"properties" properties to the frontend at the pull dashboard to improve erformance.
+- fix: improve version id that's generated for entities.
+
+# 3.0.4
+- feat: add performance profiling for messages.
+- chore: improve auto-generated previews.
+
+# 3.0.3
+- feat: add auto-generated preview for all entities.
+- feat: profile all database and elasticsearch transactions.
+- feat: save migration type per syndication to improve performance.
+- fix: avoid error when JWT can't be parsed.
+- fix: avoid hitting rss limit too soon in the health checks.
+- chore: log site request timeouts correctly.
+
+# 3.0.2
+- feat: add new database indices for syndication entities.
+
+# 3.0.1
+fix: the skip-unchanged flag was sometimes set incorrectly.
+
+# 3.0.0
 
 **THIS UPDATE REQUIRES YOU TO RUN `sync-core install update` AND UPDATE UPSTREAM SERVICES TO NEW MAJOR VERSIONS**
 
