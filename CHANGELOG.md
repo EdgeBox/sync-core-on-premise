@@ -1,3 +1,11 @@
+# 3.0.10
+- fix: auth cache wasn't cleared when re-registering a site.
+- fix: re-run/retry of aborted/failed updates sometimes didn't work.
+- chore: remove redundant logging when aborting updates.
+
+# 3.0.9
+*internal release*
+
 # 3.0.8
 - feat: send file details along with entity update requests to improve performance.
 
