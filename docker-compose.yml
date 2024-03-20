@@ -69,7 +69,7 @@ services:
 #        condition: service_healthy
 
   sync-core:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.0
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.1
     restart: always
     # You can choose any other port if you like. The container will always listen to :8080.
     ports:
