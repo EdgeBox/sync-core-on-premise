@@ -1,3 +1,63 @@
+# 3.1.0
+- feat: allow providing an update priority. Prioritized updates are processed earlier and retried more often and in quicker succession.
+- feat: clear the entity cache with a follow-up request for highly critical updates.
+- feat: mark entities as incomplete until all translations are available.
+- feat: make translation handling more resilient to avoid deleting translations in edge cases.
+- feat: make requests to the backend more resilient by auto-retrying them.
+- fix: more reliably cancel follow-up tasks.
+- fix: use better message id format for indexing.
+- fix: expect the wrong dead letter queue name to be used in an older release.
+
+# 3.0.19
+- feat: improve performance of pull dashboard requests.
+- fix: add feature flag to mark "update tracing" as an available feature.
+- fix: expect errors for entity type versions in Flow configs.
+- fix: update list-task status reliably for mappings.
+- chore: improve performance of syndication list interface.
+
+# 3.0.18
+- feat: save Drupal's requirements per site.
+- feat: expose a site's rest urls to the frontend to identify capabilities.
+- feat: fail faster during config exports to not block CI jobs.
+- feat: allow embedded entities and references to provide a view URL.
+- feat: allow tracing updates and future updates.
+- feat: provide better feedback for failed updates when e.g. the validation failed.
+- feat: handle wrong view URL from crop entities gracefully.
+- feat: propagate update failures to dependent updates.
+- feat: allow more efficient JSON bodies for forced 2xx responses.
+- feat: provide information for per-language requests of updates.
+- fix: expect files to have been deleted before.
+- fix: version hash for entities was sometimes updated when data didn't change.
+- fix: deletion of embedded entities wasn't propagated sometimes.
+
+# 3.0.17
+- fix: avoid having the root language twice for an update, leading to double updates and deleted translations.
+- fix: expect null values for reference fields.
+
+# 3.0.16
+- fix: didn't load the referenced entity correctly during some updates.
+
+# 3.0.15
+- feat: add "self" interface for sites for quick access to core details.
+- feat: allow providing descriptions for types and properties.
+- feat: add "published" property to all content.
+- fix: mapping didn't work for sites that didn't have the module installed before.
+- fix: files were re-used between sites when they should be independent.
+- chore: improve syndication list performance.
+
+# 3.0.14
+- feat: allow running updates in a specific sequence.
+- fix: expect empty reference values at content.
+
+# 3.0.13
+- feat: allow sites to provide their config asynchronously. About 5x faster than before.
+
+# 3.0.12
+*internal release*
+
+# 3.0.11
+*internal release*
+
 # 3.0.10
 - fix: auth cache wasn't cleared when re-registering a site.
 - fix: re-run/retry of aborted/failed updates sometimes didn't work.
