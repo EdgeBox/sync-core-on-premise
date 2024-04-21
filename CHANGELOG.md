@@ -1,3 +1,9 @@
+# 3.1.1
+- feat: allow deleting individual translations of content.
+- feat: allow requesting entity types with properties for a new, interactive content diff view.
+- fix: error when providing different translations of the same entity from multiple sources.
+- chore: database update to improve querying for content sources.
+
 # 3.1.0
 - feat: allow providing an update priority. Prioritized updates are processed earlier and retried more often and in quicker succession.
 - feat: clear the entity cache with a follow-up request for highly critical updates.
