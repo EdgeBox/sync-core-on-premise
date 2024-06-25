@@ -1,3 +1,13 @@
+# 3.1.3
+- feat: enable new feature flags for improved functionality and performance by default for: prefer-2xx-status-code, request-per-translation, skip-unchanged-translations, skip-unchanged-entities.
+- fix: add workaround for corrupted entity data.
+
+# 3.1.2
+- chore: only set high priority for pushing operations, not pulling operations.
+- chore: update Sentry library and integration; use Sentry cron monitoring when available.
+- chore: improve pull dashboard performance.
+- chore: allow database updates to take longer than 60 seconds.
+
 # 3.1.1
 - feat: allow deleting individual translations of content.
 - feat: allow requesting entity types with properties for a new, interactive content diff view.
