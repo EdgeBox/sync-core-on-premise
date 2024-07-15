@@ -10,9 +10,9 @@ nav_order: 2
 
 - A Docker v19 environment with at least 1 GB RAM and 1 CPU.
 - Upstream services:
-  - MongoDB 4.4.
+  - MongoDB 6.0.
   - RabbitMQ 3.8.
-  - elasticsearch: 7.12.
+  - elasticsearch: 8.8.
   - S3 bucket -OR- file system access.
   - Any cron / scheduler.
 - Downstream services:
