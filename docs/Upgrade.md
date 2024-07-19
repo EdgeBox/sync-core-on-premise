@@ -4,9 +4,18 @@ has_children: false
 nav_order: 7
 ---
 
-# Upgrade to v3
+# Upgrade
 
-## MongoDB
+## General
+
+After updating to a newer version, please run:
+```
+sync-core install update
+```
+
+## Upgrade to v3
+
+### MongoDB
 
 We are now using version 6.0 of MongoDB. You first need to upgrade to 5.0 before upgrading to 6.0. If you are using a self-hosted MongoDB, you also have to adjust the feature compatibility version after each update:
 1. Update MongoDB to v5.0, then run: `db.adminCommand( { setFeatureCompatibilityVersion: "5.0" } )`
@@ -24,15 +33,15 @@ After a successful update, you can remove the following indices manually that wo
 - syndication_entity
   - syndication_custproj_site_errors
 
-## Elasticsearch
+### Elasticsearch
 
 We are now using version 8.8 of Elasticsearch. You first need to upgrade to 7.17 before upgrading to 8.8.
 
-## RabbitMQ
+### RabbitMQ
 
 We are now using version 3.12 of RabbitMQ. Please check the RabbitMQ documentation for required version steps as that also depends on your installed Erlang version.
 
-## Migrate data
+### Migrate data
 
 If you haven't done so when updating to v2.5, please also enable this feature that is now required:
 ```
@@ -46,7 +55,7 @@ sync-core install update
 
 Before running this, some of the UI elements may not display properly for users.
 
-## Large clusters only
+### Large clusters only
 
 If you run a larger cluster with 100+ sites, please enable throttling for backend requests:
 ```

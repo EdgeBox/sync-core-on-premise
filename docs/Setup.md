@@ -44,14 +44,14 @@ $(aws ecr get-login --no-include-email --region eu-central-1 --profile edge-box)
 ## Download images
 
 You can use `docker pull` to pull the images from our registry after logging in. We are using semver tags
-for versioning. So if the current release is `2.1.3` then the following tags are all pointing to it:
-- `2.1.3`
-- `2.1`
-- `2`
+for versioning. So if the current release is `3.1.5` then the following tags are all pointing to it:
+- `3.1.5`
+- `3.1`
+- `3`
 
 If you are storing our images in your own registry we recommend you either use the major or minor tag to
 pull from us and push to your own registry. Alternatively, you can also query for new images:
 ```
-aws ecr list-images --profile=edgebox --registry-id=949515072404 --region=eu-central-1 --repository-name=cms-content-sync/sync-core --filter=tagStatus=TAGGED --max-items=1000 --output=text --query 'reverse(sort_by(imageIds, &imageTag))[?starts_with(imageTag, `2.`) == `true`].[imageTag]'
+aws ecr list-images --profile=edgebox --registry-id=949515072404 --region=eu-central-1 --repository-name=cms-content-sync/sync-core --filter=tagStatus=TAGGED --max-items=1000 --output=text --query 'reverse(sort_by(imageIds, &imageTag))[?starts_with(imageTag, `3.`) == `true`].[imageTag]' | head -n 5
 ```
-This will show all released images for the Sync Core 2.x.
+This will show the latest 5 images for the Sync Core 3.x.

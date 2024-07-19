@@ -41,6 +41,7 @@ services:
       # For prod environments this should be at least 1GB. Please refer to the official Elasticsearch docs for more
       # information.
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
     # This is recommended but not required and may fail if you are running it on certain VMs like Gitpod. So we're
     # skipping it by default.
     #ulimits:
@@ -104,8 +105,6 @@ services:
       - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
       - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
 
-      # Optional: If you want to collect errors with Sentry, you can add your DSN here.
-      - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
       # Optional: Get logs in JSON format.
       #- "LOG_FORMAT=json"
     depends_on:
@@ -122,7 +121,7 @@ services:
       retries: 30
 
   sync-core-broker:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.0
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.1
     restart: always
     environment:
       # Must be static "broker"
@@ -132,9 +131,6 @@ services:
       - "SYNC_CORE_QUEUE_URL=${SYNC_CORE_QUEUE_URL}"
       - "BROKER_QUEUE_URL=${BROKER_QUEUE_URL}"
       - "DATABASE_URL=${BROKER_DATABASE_URL}"
-
-      # Optional: If you want to collect errors with Sentry, you can add your DSN here.
-      # - "SENTRY_DSN=${SYNC_CORE_SENTRY_DSN}"
     depends_on:
       mongo:
         condition: service_healthy

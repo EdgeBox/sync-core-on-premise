@@ -8,7 +8,7 @@ nav_order: 2
 
 *Note: The upstream services are included in this repository for a local setup.*
 
-- A Docker v19 environment with at least 1 GB RAM and 1 CPU.
+- A Docker v19+ environment with at least 1 GB RAM and 1 CPU.
 - Upstream services:
   - MongoDB 6.0.
   - RabbitMQ 3.12.
@@ -41,3 +41,4 @@ Please note that we're only testing the Sync Core with *real* MongoDB servers an
 - Secrets are passed as environment variables, so you should preferably use a vault.
 - A load balancer if you would like to scale horizontally (strongly recommended).
 - Use templates to manage your setup like CFT on AWS or Kubernetes.
+- Keep upstream services in private networks only.
