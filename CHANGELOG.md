@@ -1,3 +1,12 @@
+# 3.1.5
+- fix: avoid error when using cross-syncing for individual translations.
+- fix: syndication was set as successful too early for non-root translations.
+- chore: upgrading Node.js to the newest LTS version v20.
+- chore: upgrading dependencies to new major versions.
+
+# 3.1.4
+- chore: internal release for content cloud.
+
 # 3.1.3
 - feat: enable new feature flags for improved functionality and performance by default for: prefer-2xx-status-code, request-per-translation, skip-unchanged-translations, skip-unchanged-entities.
 - fix: add workaround for corrupted entity data.
