@@ -1,3 +1,6 @@
+# 3.1.6
+- fix: startup issues for cron jobs without dummy data.
+
 # 3.1.5
 - fix: avoid error when using cross-syncing for individual translations.
 - fix: syndication was set as successful too early for non-root translations.
