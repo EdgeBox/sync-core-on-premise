@@ -19,6 +19,20 @@ nav_order: 5
 - `log:Previews` default `0`: Enable advanced logging for preview indexing and searching.
 - `log:Syndication` default `0`: Enable advanced logging for the whole update / syndication process. Try to use this flag narrowly, e.g. only per site.
 
+### Security
+- `authentication:session-lifespan` default `86400` (1 day): How long a session lasts (cookie TTL) in seconds before the Sync Core logs in again to the site. Can be customized per project and site as well.
+
+### Private (and local) environments
+- `site:request-polling:request-lifetime` default `86400` (1 day): How long the Sync Core waits for a request to be polled by the site before marking it failed in seconds.
+
+### Backend (licensing) request throttling
+- `throttling:backend-request:per-minute` default `5`: How many requests to send to the Content Sync backend per cron run.
+- `throttling:backend-request:in-parallel` default `5`: How many requests to send to the Content Sync backend in parallel.
+- `throttling:internal:per-minute` default `10`: How many internal messages to process in parallel e.g. to delete files.
+
+### Upgrades
+- `entity:latest` default `1`: Cache the latest entity revision separately to speed up syndications. Enabled by default in newer installations.
+
 ## Manage Feature Flags
 
 You can enable Feature Flags using the environment variable `FEATURE_FLAGS` and providing a comma-separated list or by using the console command `sync-core features <enable|disable> <name> [type] [id]`.
