@@ -44,9 +44,9 @@ $(aws ecr get-login --no-include-email --region eu-central-1 --profile edge-box)
 ## Download images
 
 You can use `docker pull` to pull the images from our registry after logging in. We are using semver tags
-for versioning. So if the current release is `3.1.5` then the following tags are all pointing to it:
-- `3.1.5`
-- `3.1`
+for versioning. So if the current release is `3.2.0` then the following tags are all pointing to it:
+- `3.2.0`
+- `3.2`
 - `3`
 
 If you are storing our images in your own registry we recommend you either use the major or minor tag to

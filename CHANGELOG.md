@@ -1,3 +1,23 @@
+# 3.2.0
+
+## Features
+- Authentication: use feature flag to determine session lifespan.
+- Authentication: allow session lifespans of at least 5m, set by console command.
+- Syndication / Entity Status: show up to 10 items in the syndication history for the entity status tab.
+- Syndication / Pull: validate that the expected entity type version can be used for the provided entity.
+- Syndication / Pull: save update + ignore count per operation if provided.
+- Syndication / Flow: allow optional language filter.
+- Site / Registration: immediately request feature flags after registration.
+
+## Bug fixes
+- Syndication: recreate items after deletion even when they have the same version id.
+
+## Chore
+- Update all upstream services to their latest stable version.
+- Update Node.js to v22 and update all dependencies to their latest stable version.
+- Cron: make it easier to recover from failed runs by providing go-back-hours option.
+- Avoid unsolicited and unnecessary warnings from NestJS.
+
 # 3.1.6
 - fix: startup issues for cron jobs without dummy data.
 

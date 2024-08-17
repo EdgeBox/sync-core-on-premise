@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongo:
-    image: mongo:6.0
+    image: mongo:7.0
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -17,7 +17,7 @@ services:
   rabbitmq:
     # We are including the management features here to have a UI if we needed to debug anything. You can separate them
     # if you are self-hosting this as a cluster.
-    image: rabbitmq:3.12-management
+    image: rabbitmq:3.13-management
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -30,7 +30,7 @@ services:
       retries: 30
 
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:8.8.2"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:8.15.0"
     # Uncomment if you want to debug this service.
     #ports:
     #  - "9200:9200"
@@ -70,7 +70,7 @@ services:
 #        condition: service_healthy
 
   sync-core:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.1
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.2
     restart: always
     # You can choose any other port if you like. The container will always listen to :8080.
     ports:
@@ -121,7 +121,7 @@ services:
       retries: 30
 
   sync-core-broker:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.1
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.2
     restart: always
     environment:
       # Must be static "broker"

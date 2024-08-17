@@ -8,11 +8,11 @@ nav_order: 2
 
 *Note: The upstream services are included in this repository for a local setup.*
 
-- A Docker v19+ environment with at least 1 GB RAM and 1 CPU.
+- A Docker v27+ environment with at least 1 GB RAM and 1 CPU.
 - Upstream services:
-  - MongoDB 6.0.
-  - RabbitMQ 3.12.
-  - elasticsearch: 8.8.
+  - MongoDB 7.0.
+  - RabbitMQ 3.13.
+  - elasticsearch: 8.15.
   - S3 bucket -OR- file system access.
   - Any cron / scheduler.
 - Downstream services:
@@ -35,10 +35,13 @@ As the Sync Core runs as a horizontally scalable cluster, we don't recommend run
 Please note that we're only testing the Sync Core with *real* MongoDB servers and not substitute services like AWS DocumentDB or Azure CosmosDB. CosmosDB has known restrictions on indexes that make it incompatible with Content Sync; you will receive an error like this during start-up:
 > MongoError: Unique and compound indexes do not support nested paths.
 
-## Optional
-- If you would like to follow your own deployment workflow, you can pull the image and securely store it in your own private registry with your own release tags.
-- Store the logs centrally so you can easily access them.
-- Secrets are passed as environment variables, so you should preferably use a vault.
-- A load balancer if you would like to scale horizontally (strongly recommended).
+## Best practices
+- Store the logs centrally.
+- Use a vault to pass securely secrets as environment variables.
+- Add a load balancer if you would like to scale horizontally (strongly recommended).
+- Add a REST-compatible WAF for all access from public networks.
 - Use templates to manage your setup like CFT on AWS or Kubernetes.
 - Keep upstream services in private networks only.
+
+## Optional
+- If you would like to follow your own deployment workflow, you can pull the image and securely store it in your own private registry with your own release tags.

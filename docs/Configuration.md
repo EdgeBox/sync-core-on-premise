@@ -24,11 +24,6 @@ nav_order: 4
 - `DATABASE_ENABLE_SSL` optional, one of `true` or `false`, default *(empty)*: Usually not required if you enable ssl/tls using the query parameters of the `DATABASE_URL`. If you run into a connection timeout, try removing `ssl=true` and `tls=true` from the database URL and use these environment variables instead. Experienced this issue when using CosmosDB.
 - `DATABASE_ENABLE_TLS` optional, one of `true` or `false`, default *(empty)*: Usually not required; same as `DATABASE_ENABLE_SSL`, but for a different library internally; set to the same value as your `DATABASE_ENABLE_SSL` variable.
 
-### Error reporting (Sentry)
-- `SENTRY_DSN` optional, default *(empty)*: A Sentry DSN used to report all errors to.
-- `TRACES_SAMPLE_RATE` optional, default `0`: Sample rate between 0 and 1 if you want to collect performance metrics with Sentry.
-- `HOSTNAME` optional, default *(empty)*: Used by Sentry to identify the host.
-
 ### Logging
 - `LOG_LEVEL` optional, default *info*: Either `error`, `warn`, `info`, `verbose` or `debug`.
 - `LOG_FORMAT` optional, default `plain`: Either `plain` or `json`.
