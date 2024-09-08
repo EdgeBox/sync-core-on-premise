@@ -1,3 +1,13 @@
+# 3.2.1
+
+## Features
+- Site: store available languages and default language per site.
+- Previews: use "processed" text from Drupal when available.
+
+## Chore
+- Update Content Cloud integration.
+- Update domain from cms-content-sync.io to content-sync.io.
+
 # 3.2.0
 
 ## Features
