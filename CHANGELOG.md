@@ -1,3 +1,19 @@
+# 3.2.4
+
+## Bug fixes
+- Update failure for one site lead to a failed cron job.
+- Increase timeout to wait for log messages to be processed for cron jobs.
+- Translations weren't deleted at target sites if only the translation deletion was pushed.
+- Ignore additional properties when pushing content to target sites so it passes validation.
+- Skip validation when cloning existing translations as the entity type definition may have changed in the meantime.
+
+# 3.2.3
+*Internal release to update Content Cloud integration.*
+
+# 3.2.2
+
+*Internal release to update Content Cloud integration.*
+
 # 3.2.1
 
 ## Features
