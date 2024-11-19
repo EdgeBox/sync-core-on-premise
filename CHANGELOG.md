@@ -1,3 +1,24 @@
+# 3.3.1
+
+*internal release*
+
+# 3.3.0
+
+## Features
+
+- Added webhooks / notifications.
+
+## Improvements
+
+- Improved logging to log all critical CRUD operations.
+- Allow requesting site statuses in multiple requests to improve performance and avoid timeouts.
+- Delete authentication data immediately when a site is deactivated.
+
+## Chore
+
+- Update node.js version.
+- Remove npm from Docker build.
+
 # 3.2.4
 
 ## Bug fixes
