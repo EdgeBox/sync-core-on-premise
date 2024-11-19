@@ -70,7 +70,7 @@ services:
 #        condition: service_healthy
 
   sync-core:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.2
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.3
     restart: always
     # You can choose any other port if you like. The container will always listen to :8080.
     ports:
@@ -121,7 +121,7 @@ services:
       retries: 30
 
   sync-core-broker:
-    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.2
+    image: 949515072404.dkr.ecr.eu-central-1.amazonaws.com/cms-content-sync/sync-core:3.3
     restart: always
     environment:
       # Must be static "broker"
