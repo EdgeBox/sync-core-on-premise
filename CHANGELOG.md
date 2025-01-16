@@ -1,3 +1,17 @@
+# 3.3.2
+
+## Features
+
+- Update Content Cloud integration.
+
+## Bug fixes
+
+- Allow higher check-in margins to avoid incorrect monitoring failure.
+- Expect uuid to be empty for newly registered sites, allowing for immediate config updates.
+
+## Chore
+- Log site config updates in more detail.
+
 # 3.3.1
 
 *internal release*
