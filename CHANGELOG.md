@@ -1,3 +1,21 @@
+# 3.3.4
+
+## Features
+
+- Update Content Cloud integration.
+- Allow skipping syndication of the root translation for cross-market translation sharing.
+
+## Fix
+
+- Misleading property path in nested validation errors.
+- Couldn't remove allowedLanguages filter from Flows.
+
+# 3.3.3
+
+## Features
+
+- Update Content Cloud integration.
+
 # 3.3.2
 
 ## Features
