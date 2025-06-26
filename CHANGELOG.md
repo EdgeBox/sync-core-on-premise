@@ -1,3 +1,14 @@
+# 3.3.5
+
+## Improvements
+
+- Improve Content Cloud integration.
+- Allow skipping the root translation in some cases.
+
+## Bug fixes
+
+- Misleading property path from nested validation errors.
+
 # 3.3.4
 
 ## Features
