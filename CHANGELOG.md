@@ -1,3 +1,20 @@
+# 3.3.7
+
+## Improvements
+
+- Improve Content Cloud integration.
+
+## Chore
+
+- Upgrade of Elasticsearch to 9.x
+- Internal updates for node.js and dependencies
+
+# 3.3.6
+
+## Chore
+
+Dependency updates.
+
 # 3.3.5
 
 ## Improvements
