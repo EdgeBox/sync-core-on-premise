@@ -1,3 +1,13 @@
+# 3.3.8
+
+## Improvements
+
+- Improve `delete-old` cron job resilience.
+
+## Chore
+
+- Dependency updates.
+
 # 3.3.7
 
 ## Improvements
