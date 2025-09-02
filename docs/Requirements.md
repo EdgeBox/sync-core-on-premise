@@ -10,9 +10,9 @@ nav_order: 2
 
 - A Docker v27+ environment with at least 1 GB RAM and 1 CPU.
 - Upstream services:
-  - MongoDB 7.0.
-  - RabbitMQ 3.13.
-  - elasticsearch: 8.15.
+  - MongoDB 8.0.
+  - RabbitMQ 4.1.
+  - elasticsearch: 9.1.
   - S3 bucket -OR- file system access.
   - Any cron / scheduler.
 - Downstream services:
