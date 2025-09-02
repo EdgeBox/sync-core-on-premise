@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongo:
-    image: mongo:7.0
+    image: mongo:8.0
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -17,7 +17,7 @@ services:
   rabbitmq:
     # We are including the management features here to have a UI if we needed to debug anything. You can separate them
     # if you are self-hosting this as a cluster.
-    image: rabbitmq:3.13-management
+    image: rabbitmq:4.1.2-management
     restart: always
     # Uncomment if you want to debug this service.
     #ports:
@@ -30,7 +30,7 @@ services:
       retries: 30
 
   elasticsearch:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:8.15.0"
+    image: "docker.elastic.co/elasticsearch/elasticsearch:9.0.4"
     # Uncomment if you want to debug this service.
     #ports:
     #  - "9200:9200"
