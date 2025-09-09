@@ -1,3 +1,13 @@
+# 3.3.9
+
+## Improvements
+
+- Decrease logging noise from reference transformer.
+
+## Chore
+
+- Dependency updates.
+- 
 # 3.3.8
 
 ## Improvements
