@@ -1,3 +1,18 @@
+# 3.4.0
+
+## Features
+- Allow embedding the pull dashboard for admins across all Flows to restore deleted content more easily.
+- Add a new "skipped" update status to improve the sync state display for editors.
+
+## Improvements
+- Process RabbitMQ messages based on task priority.
+- Process site update messages asynchronously.
+- Detect *.ddev domains as local domains.
+
+## Patches
+- Allow updating the view URL for content.
+- Update dependencies.
+
 # 3.3.9
 
 ## Improvements
