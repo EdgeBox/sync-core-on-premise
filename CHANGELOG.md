@@ -1,3 +1,8 @@
+# 3.4.1
+
+## Chore
+- Update base image to use newer SSL version.
+
 # 3.4.0
 
 ## Features
