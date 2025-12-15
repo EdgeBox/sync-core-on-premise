@@ -1,3 +1,8 @@
+# 3.4.3
+
+## Chore
+- Update dependencies to fix vulnerabilities.
+
 # 3.4.2
 
 ## Chore
