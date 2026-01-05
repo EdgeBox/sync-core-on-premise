@@ -1,3 +1,19 @@
+# 3.5.0
+
+## Features
+
+- New "Clone" sync mode.
+- Pull dashboard: new Flow selection modal when Flows overlap for the same item.
+
+## Improvements
+
+- Migration: Pull all now exposes a "force" flag.
+- Previews: Replace relative URLs to point to the source site, e.g., for inline image embeds.
+
+## Chore
+
+- Update dependencies to fix vulnerabilities.
+
 # 3.4.3
 
 ## Chore
