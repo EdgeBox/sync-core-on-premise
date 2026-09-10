@@ -1,3 +1,13 @@
+# 3.7.0
+
+## Features
+
+- Improved AI Visibility features.
+
+## Security
+
+- Dependency updates.
+
 # 3.5.0
 
 ## Features
