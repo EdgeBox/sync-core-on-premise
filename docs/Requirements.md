@@ -8,7 +8,7 @@ nav_order: 2
 
 *Note: The upstream services are included in this repository for a local setup.*
 
-- A Docker v27+ environment with at least 1 GB RAM and 1 CPU.
+- A Docker v28+ environment with at least 2 GB RAM and 1 CPU.
 - Upstream services:
   - MongoDB 8.0.
   - RabbitMQ 4.1.
@@ -19,7 +19,7 @@ nav_order: 2
   - A load balancer or a reverse proxy like apache or nginx: Offload HTTPS and forward requests as HTTP to the Sync Core.
 - Network rules must:
   - Allow GET, POST, PUT, DELETE between the Sync Core and the connected sites and vice versa.
-  - Allow POST and GET from the Sync Core to api.cms-content-sync.io.
+  - Allow POST and GET from the Sync Core to api.content-sync.io.
 - The Drupal module may not be older than 6 months compared to the Sync Core version.
 - The Sync Core must be accessible by all your backend site users that are using Content Sync.
   - The Sync Core can still be private, but users must have direct HTTP/HTTPS access to it.
