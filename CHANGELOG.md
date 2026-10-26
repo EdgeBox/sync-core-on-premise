@@ -1,3 +1,21 @@
+# 3.8.2
+
+## Security
+
+- Dependency updates.
+
+# 3.8.1
+
+## Security
+
+- Dependency updates.
+
+# 3.8.0
+
+## Features
+
+- Improved AI Visibility features.
+
 # 3.7.0
 
 ## Features
