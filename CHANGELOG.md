@@ -1,3 +1,9 @@
+# 3.8.3
+
+## Security
+
+- Dependency updates.
+
 # 3.8.2
 
 ## Security
