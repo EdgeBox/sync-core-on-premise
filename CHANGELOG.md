@@ -1,3 +1,19 @@
+# 3.9.0
+
+## Features
+
+- Delete shared content from the sites that pulled it, from Content Sync, or both.
+- Store the language a site created pulled content in, and accept the translations it pushes back.
+- Limit the base URLs the sites of a project can register with.
+
+## Bug fixes
+
+- The source of shared translations is recorded more reliably; `sync-core install update` corrects existing entries.
+
+## Security
+
+- Dependency updates.
+
 # 3.8.3
 
 ## Security
